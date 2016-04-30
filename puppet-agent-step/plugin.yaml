@@ -1,0 +1,26 @@
+name: puppet-agent-step
+version: 0.9
+rundeckPluginVersion: 1.0
+author: Felix Franz
+date: 03/12/16
+providers:
+  - name: puppet-agent-step
+    service: RemoteScriptNodeStep
+    title: Puppet Agent
+    description: Trigger Puppet agent run on the local system.
+    plugin-type: script
+    script-interpreter: /bin/bash
+    script-file: puppet_agent.sh
+    script-args: ${config.sudo} ${job.loglevel} ${config.arguments}
+    config:
+      - type: String
+        name: arguments
+        title: Arguments
+        description: Arguments to pass to puppet agent
+        default: "--test"
+      - type: Boolean
+        name: sudo
+        title: Sudo
+        description: Execute puppet using sudo
+        default: false
+
